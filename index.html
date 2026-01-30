@@ -7,718 +7,201 @@
   <meta name="keywords" content="UK trades, invoicing app, CIS calculator, VAT tracking, construction invoicing, tradesperson app">
   <title>TradeVox - Professional Invoicing for UK Tradespeople</title>
   
-  <!-- Inter Font from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="./assets/favicon.png">
-  
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     :root {
       --orange: #FF9800;
-      --orange-dark: #F57C00;
-      --dark-bg: #0F172A;
-      --dark-surface: #1E293B;
-      --text-primary: #F8FAFC;
-      --text-secondary: #94A3B8;
-      --border: #334155;
+      --orange-dim: rgba(255, 152, 0, 0.1);
+      --dark-bg: #0f111a;
+      --dark-card: #1c1f2a;
+      --border: rgba(255, 255, 255, 0.05);
+      --text-main: #f8fafc;
+      --text-dim: #94a3b8;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
-      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-main);
       line-height: 1.6;
-      min-height: 100vh;
       overflow-x: hidden;
     }
 
     /* Hero Section */
     .hero {
       text-align: center;
-      padding: 120px 24px 80px;
-      position: relative;
-      overflow: hidden;
+      padding: 100px 24px;
+      background: radial-gradient(circle at top right, rgba(255, 152, 0, 0.05), transparent 40%);
     }
 
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255, 152, 0, 0.1) 0%, transparent 70%);
-      animation: pulse 8s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 0.5; }
-      50% { transform: scale(1.1); opacity: 0.3; }
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .logo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      background: rgba(255, 152, 0, 0.1);
-      border: 2px solid var(--orange);
-      border-radius: 100px;
-      padding: 8px 24px;
-      margin-bottom: 32px;
-      font-weight: 600;
-      font-size: 14px;
-      letter-spacing: 0.5px;
+    .badge {
+      display: inline-block;
+      background: var(--orange-dim);
       color: var(--orange);
-    }
-
-    .logo-icon {
-      font-size: 24px;
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid var(--orange);
+      margin-bottom: 24px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     h1 {
-      font-size: clamp(40px, 8vw, 72px);
+      font-size: clamp(48px, 8vw, 84px);
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 24px;
-      background: linear-gradient(135deg, #FFFFFF 0%, #94A3B8 100%);
+      letter-spacing: -3px;
+      line-height: 0.95;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fff 0%, #94a3b8 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .hero-subtitle {
-      font-size: clamp(18px, 3vw, 24px);
-      color: var(--text-secondary);
-      margin-bottom: 48px;
-      font-weight: 500;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      font-size: 1.2rem;
+      color: var(--text-dim);
     }
 
     .cta-button {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
       background: var(--orange);
       color: white;
-      padding: 18px 36px;
-      border-radius: 16px;
-      font-size: 18px;
+      padding: 18px 40px;
+      border-radius: 14px;
       font-weight: 700;
       text-decoration: none;
-      transition: all 0.3s ease;
-      border: none;
-      cursor: not-allowed;
-      box-shadow: 0 8px 32px rgba(255, 152, 0, 0.4);
+      display: inline-block;
+      transition: 0.3s;
+      box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
     }
 
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 40px rgba(255, 152, 0, 0.5);
-      background: var(--orange-dark);
-    }
+    .cta-button:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(255, 152, 0, 0.4); }
 
-    .coming-soon-tag {
-      display: block;
-      margin-top: 16px;
-      font-size: 14px;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    /* Features Section */
-    .features-section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 18px;
-      color: var(--text-secondary);
-      margin-bottom: 64px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
+    /* Features Grid (Matching your Image) */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-      margin-bottom: 80px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 24px;
     }
 
     .feature-card {
-      background: var(--dark-surface);
+      background: var(--dark-card);
       border: 1px solid var(--border);
-      border-radius: 24px;
       padding: 40px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      border-radius: 24px;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .feature-card:hover {
-      transform: translateY(-8px);
       border-color: var(--orange);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    .feature-card:hover::before {
-      opacity: 1;
+      background: #232733;
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
 
     .feature-icon {
-      width: 64px;
-      height: 64px;
-      background: rgba(255, 152, 0, 0.1);
-      border: 2px solid var(--orange);
-      border-radius: 16px;
+      width: 56px;
+      height: 56px;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 24px;
       margin-bottom: 24px;
     }
 
-    .feature-title {
-      font-size: 22px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: var(--text-primary);
-    }
-
-    .feature-description {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
+    .feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; font-weight: 700; color: white; }
+    .feature-card p { color: var(--text-dim); font-size: 0.95rem; line-height: 1.7; }
 
     /* Stats Bar */
     .stats-bar {
       display: flex;
       justify-content: space-around;
-      align-items: center;
       max-width: 900px;
-      margin: 0 auto 80px;
-      padding: 32px;
-      background: var(--dark-surface);
-      border: 1px solid var(--border);
+      margin: 0 auto 100px;
+      background: rgba(255,255,255,0.03);
+      padding: 30px;
       border-radius: 24px;
-      gap: 32px;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      text-align: center;
-    }
-
-    .stat-value {
-      font-size: 36px;
-      font-weight: 800;
-      color: var(--orange);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 600;
-    }
-
-    /* Legal Section */
-    .legal-section {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 80px 24px;
-    }
-
-    .accordion {
-      background: var(--dark-surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      margin-bottom: 16px;
-      overflow: hidden;
-      transition: all 0.3s ease;
     }
 
-    .accordion:hover {
-      border-color: var(--orange);
-    }
+    .stat-value { font-size: 2rem; font-weight: 800; color: var(--orange); display: block; }
+    .stat-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
 
-    .accordion-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 24px 32px;
-      cursor: pointer;
-      user-select: none;
-      background: transparent;
-      transition: background 0.2s ease;
-    }
+    /* Legal Accordions */
+    .legal-section { max-width: 800px; margin: 0 auto 100px; padding: 0 24px; }
+    .accordion { background: var(--dark-card); border-radius: 16px; margin-bottom: 12px; border: 1px solid var(--border); }
+    .accordion-header { padding: 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .accordion-title { font-weight: 700; font-size: 1.1rem; }
+    .accordion-content { max-height: 0; overflow: hidden; transition: 0.3s; padding: 0 24px; }
+    .accordion.active .accordion-content { max-height: 1000px; padding-bottom: 30px; }
+    .accordion.active .accordion-header { border-bottom: 1px solid var(--border); margin-bottom: 20px; }
 
-    .accordion-header:hover {
-      background: rgba(255, 152, 0, 0.05);
-    }
+    footer { text-align: center; padding: 60px 24px; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 13px; }
+    .footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
+    .footer-links a { color: var(--text-dim); text-decoration: none; }
+    .footer-links a:hover { color: var(--orange); }
 
-    .accordion-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-
-    .accordion-icon {
-      font-size: 24px;
-      color: var(--orange);
-      transition: transform 0.3s ease;
-    }
-
-    .accordion.active .accordion-icon {
-      transform: rotate(180deg);
-    }
-
-    .accordion-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
-      padding: 0 32px;
-    }
-
-    .accordion.active .accordion-content {
-      max-height: 2000px;
-      padding: 0 32px 32px;
-    }
-
-    .accordion-content h3 {
-      font-size: 18px;
-      margin-top: 24px;
-      margin-bottom: 12px;
-      color: var(--orange);
-    }
-
-    .accordion-content p,
-    .accordion-content ul {
-      font-size: 15px;
-      color: var(--text-secondary);
-      line-height: 1.8;
-      margin-bottom: 16px;
-    }
-
-    .accordion-content ul {
-      padding-left: 24px;
-    }
-
-    .accordion-content li {
-      margin-bottom: 8px;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 48px 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-secondary);
-      font-size: 14px;
-    }
-
-    .footer-links {
-      display: flex;
-      justify-content: center;
-      gap: 32px;
-      margin-bottom: 24px;
-      flex-wrap: wrap;
-    }
-
-    .footer-links a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
-
-    .footer-links a:hover {
-      color: var(--orange);
-    }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .hero {
-        padding: 80px 24px 60px;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .stats-bar {
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .accordion-header {
-        padding: 20px 24px;
-      }
-
-      .accordion-content {
-        padding: 0 24px;
-      }
-
-      .accordion.active .accordion-content {
-        padding: 0 24px 24px;
-      }
+      .stats-bar { flex-direction: column; gap: 30px; text-align: center; }
+      h1 { font-size: 50px; }
     }
   </style>
 </head>
 <body>
-  <!-- Hero Section -->
+
   <section class="hero">
-    <div class="hero-content">
-      <div class="logo-badge">
-        <span class="logo-icon">🔧</span>
-        <span>UK TRADE PROFESSIONALS</span>
-      </div>
-      
-      <h1>TradeVox</h1>
-      
-      <p class="hero-subtitle">
-        Professional invoicing for UK tradespeople. Track VAT, CIS deductions, and get paid faster with AI-powered voice invoicing.
-      </p>
-      
-      <a href="#" class="cta-button" onclick="return false;">
-        <span>📱</span>
-        <span>Coming Soon to App Store</span>
-      </a>
-      
-      <span class="coming-soon-tag">⏳ Launching Q1 2026 - iOS & Android</span>
-    </div>
+    <div class="badge">HMRC Tax Year 2025-2026 Ready</div>
+    <h1>TradeVox</h1>
+    <p class="hero-subtitle">The Financial Engine for UK Trade Professionals. Voice invoicing, CIS tracking, and 100% privacy by design.</p>
+    <a href="#" class="cta-button">📱 Coming Soon to App Store</a>
   </section>
 
-  <!-- Features Section -->
-  <section class="features-section">
-    <h2 class="section-title">Built for the Job Site</h2>
-    <p class="section-subtitle">
-      Everything UK tradespeople need to invoice professionally, track taxes, and get paid on time.
-    </p>
-
-    <div class="features-grid">
-      <!-- Feature 1: Speed -->
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">Lightning-Fast Invoicing</h3>
-        <p class="feature-description">
-          Create professional invoices in under 10 seconds using voice commands. No typing required. Just speak your job details and send.
-        </p>
-      </div>
-
-      <!-- Feature 2: Tax Compliance -->
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3 class="feature-title">CIS & VAT Compliance</h3>
-        <p class="feature-description">
-          Automatic CIS deductions (20% labor, 0% materials) and VAT calculations. HMRC-ready exports for your accountant with one tap.
-        </p>
-      </div>
-
-      <!-- Feature 3: Financial Engine -->
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3 class="feature-title">Real-Time Tax Tracking</h3>
-        <p class="feature-description">
-          See your Gross Revenue, VAT collected, CIS deducted, and Net Position instantly. Tax Year tracker follows UK fiscal periods (Apr 6 - Apr 5).
-        </p>
-      </div>
-
-      <!-- Feature 4: Privacy -->
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3 class="feature-title">100% Local Storage</h3>
-        <p class="feature-description">
-          Your data never leaves your device. No cloud servers, no subscriptions, no data mining. Work offline anywhere—even on remote job sites.
-        </p>
-      </div>
-
-      <!-- Feature 5: Receipt Scanner -->
-      <div class="feature-card">
-        <div class="feature-icon">📸</div>
-        <h3 class="feature-title">AI Receipt Scanner</h3>
-        <p class="feature-description">
-          Snap a photo of any receipt and TradeVox extracts vendor, date, total, and VAT automatically. Even handles handwritten receipts.
-        </p>
-      </div>
-
-      <!-- Feature 6: Professional PDFs -->
-      <div class="feature-card">
-        <div class="feature-icon">📄</div>
-        <h3 class="feature-title">Professional Invoices</h3>
-        <p class="feature-description">
-          Generate branded PDF invoices with your logo, bank details, and QR codes for instant payment. Send via email or share directly.
-        </p>
-      </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Lightning-Fast Invoicing</h3>
+      <p>Create professional invoices in under 10 seconds using voice commands. No typing required. Just speak your job details and send.</p>
     </div>
-
-    <!-- Stats Bar -->
-    <div class="stats-bar">
-      <div class="stat">
-        <span class="stat-value">&lt;10s</span>
-        <span class="stat-label">Invoice Creation</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">100%</span>
-        <span class="stat-label">HMRC Compliant</span>
-      </div>
-      <div class="stat">
-        <span class="stat-value">0%</span>
-        <span class="stat-label">Cloud Dependency</span>
-      </div>
+    <div class="feature-card">
+      <div class="feature-icon">🛡️</div>
+      <h3>CIS & VAT Compliance</h3>
+      <p>Automatic CIS deductions (20% labor, 0% materials) and VAT calculations. HMRC-ready exports for your accountant with one tap.</p>
     </div>
-  </section>
-
-  <!-- Legal Section (Accordions) -->
-  <section class="legal-section">
-    <h2 class="section-title">Legal & Privacy</h2>
-    <p class="section-subtitle">
-      Your data, your device. No accounts, no tracking, no compromises.
-    </p>
-
-    <!-- Privacy Policy Accordion -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h3 class="accordion-title">Privacy Policy</h3>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p><strong>Effective Date:</strong> January 30, 2026</p>
-        
-        <h3>1. Introduction</h3>
-        <p>
-          TradeVox ("we", "our", "us") respects your privacy. This Privacy Policy explains how we handle your data when you use the TradeVox mobile application.
-        </p>
-
-        <h3>2. Data Collection</h3>
-        <p>
-          <strong>Local-First Architecture:</strong> TradeVox stores all invoices, expenses, client data, and financial records locally on your device using AsyncStorage (encrypted). No data is sent to our servers or third-party cloud services.
-        </p>
-        <p>
-          <strong>Optional AI Features:</strong> If you use the AI receipt scanner or voice invoicing features, audio files and images are temporarily sent to OpenAI's API for processing. These files are deleted immediately after processing and are not stored by TradeVox or OpenAI beyond the API call.
-        </p>
-
-        <h3>3. Data We Do NOT Collect</h3>
-        <ul>
-          <li>No user accounts or login credentials</li>
-          <li>No analytics or tracking pixels</li>
-          <li>No email addresses or contact information (unless you voluntarily enter them for invoicing purposes)</li>
-          <li>No location tracking</li>
-          <li>No behavioral data or usage patterns</li>
-        </ul>
-
-        <h3>4. Third-Party Services</h3>
-        <p>
-          <strong>OpenAI API (Optional):</strong> Used only for AI-powered receipt scanning and voice-to-invoice conversion. OpenAI processes data according to their <a href="https://openai.com/policies/privacy-policy" target="_blank" style="color: #FF9800;">Privacy Policy</a>.
-        </p>
-        <p>
-          <strong>Expo Framework:</strong> TradeVox is built with Expo (React Native). Expo does not collect personal data from our app unless you explicitly opt-in to error reporting (disabled by default).
-        </p>
-
-        <h3>5. Your Rights</h3>
-        <p>
-          Since all data is stored locally on your device, you have complete control:
-        </p>
-        <ul>
-          <li>You can export all data as CSV/JSON at any time</li>
-          <li>You can delete the app and all data will be removed from your device</li>
-          <li>No central database exists, so there's nothing to request deletion from</li>
-        </ul>
-
-        <h3>6. Children's Privacy</h3>
-        <p>
-          TradeVox is not intended for users under 18 years of age. We do not knowingly collect data from children.
-        </p>
-
-        <h3>7. Changes to This Policy</h3>
-        <p>
-          We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with a new "Effective Date."
-        </p>
-
-        <h3>8. Contact Us</h3>
-        <p>
-          If you have any questions about this Privacy Policy, contact us at: <strong>privacy@tradevox.uk</strong>
-        </p>
-      </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Real-Time Tax Tracking</h3>
+      <p>See your Gross Revenue, VAT, and Net Position instantly. Tax Year tracker follows UK fiscal periods (Apr 6 - Apr 5).</p>
     </div>
-
-    <!-- Terms of Service Accordion -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h3 class="accordion-title">Terms of Service</h3>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <p><strong>Effective Date:</strong> January 30, 2026</p>
-        
-        <h3>1. Acceptance of Terms</h3>
-        <p>
-          By downloading, installing, or using TradeVox, you agree to be bound by these Terms of Service. If you do not agree, do not use the app.
-        </p>
-
-        <h3>2. License</h3>
-        <p>
-          TradeVox grants you a personal, non-transferable, non-exclusive license to use the app for business invoicing purposes. You may not reverse-engineer, decompile, or redistribute the app.
-        </p>
-
-        <h3>3. Free Tier & Subscription</h3>
-        <ul>
-          <li><strong>Free Tier:</strong> 3 free invoices (trial period)</li>
-          <li><strong>Monthly Subscription:</strong> £6.99/month</li>
-          <li><strong>Yearly Subscription:</strong> £49.99/year (save 40%)</li>
-        </ul>
-        <p>
-          Subscriptions auto-renew unless canceled 24 hours before the renewal date. Refunds are handled according to Apple/Google Play Store policies.
-        </p>
-
-        <h3>4. Tax Compliance Disclaimer</h3>
-        <p>
-          <strong>Important:</strong> TradeVox provides CIS and VAT calculations based on standard UK HMRC rules. However, we are not accountants or tax advisors. You are responsible for verifying all tax calculations and ensuring compliance with HMRC regulations. Consult a qualified accountant for tax advice.
-        </p>
-
-        <h3>5. Limitation of Liability</h3>
-        <p>
-          TradeVox is provided "as is" without warranties of any kind. We are not liable for:
-        </p>
-        <ul>
-          <li>Errors in invoice calculations</li>
-          <li>Data loss (backup your data regularly)</li>
-          <li>Tax penalties or HMRC fines resulting from app usage</li>
-          <li>Indirect, incidental, or consequential damages</li>
-        </ul>
-
-        <h3>6. User Responsibilities</h3>
-        <ul>
-          <li>You are responsible for backing up your data (use the Export feature)</li>
-          <li>You must ensure invoice accuracy before sending to clients</li>
-          <li>You must comply with all UK tax laws and HMRC reporting requirements</li>
-        </ul>
-
-        <h3>7. Termination</h3>
-        <p>
-          You may stop using TradeVox at any time by deleting the app. We reserve the right to terminate access if you violate these Terms.
-        </p>
-
-        <h3>8. Governing Law</h3>
-        <p>
-          These Terms are governed by the laws of England and Wales. Any disputes will be resolved in UK courts.
-        </p>
-
-        <h3>9. Contact</h3>
-        <p>
-          For support or legal inquiries: <strong>support@tradevox.uk</strong>
-        </p>
-      </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>100% Local Storage</h3>
+      <p>Your data never leaves your device. No cloud servers, no subscriptions, no data mining. Work offline anywhere—even on remote job sites.</p>
     </div>
-
-    <!-- Support Accordion -->
-    <div class="accordion">
-      <div class="accordion-header" onclick="toggleAccordion(this)">
-        <h3 class="accordion-title">Support & Contact</h3>
-        <span class="accordion-icon">▼</span>
-      </div>
-      <div class="accordion-content">
-        <h3>Need Help?</h3>
-        <p>
-          We're here to help UK tradespeople get the most out of TradeVox.
-        </p>
-
-        <h3>Common Questions</h3>
-        <p><strong>Q: How do I create my first invoice?</strong></p>
-        <p>A: Tap the orange "+" button on the Dashboard, enter client details, add line items (labor/materials), and tap "Save as Draft" or "Mark as Sent".</p>
-
-        <p><strong>Q: How does the CIS tax calculator work?</strong></p>
-        <p>A: TradeVox automatically applies UK Construction Industry Scheme rules. Mark line items as "Labor" (20% deduction) or "Materials" (0% deduction).</p>
-
-        <p><strong>Q: Where is my data stored?</strong></p>
-        <p>A: All data is stored locally on your device using AsyncStorage (encrypted). Nothing is sent to cloud servers.</p>
-
-        <p><strong>Q: Does TradeVox work offline?</strong></p>
-        <p>A: Absolutely. TradeVox is built for job sites with poor connectivity. All features work offline except AI receipt scanning.</p>
-
-        <h3>Contact Support</h3>
-        <p>
-          <strong>Email:</strong> support@tradevox.uk<br>
-          <strong>Response Time:</strong> Within 24 hours (Monday-Friday)
-        </p>
-
-        <h3>Report a Bug</h3>
-        <p>
-          Found a bug? Email us at: <strong>bugs@tradevox.uk</strong>
-        </p>
-      </div>
+    <div class="feature-card">
+      <div class="feature-icon">📸</div>
+      <h3>AI Receipt Scanner</h3>
+      <p>Snap a photo and TradeVox extracts vendor, date, total, and VAT automatically. Even handles handwritten receipts.</p>
     </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-links">
-      <a href="#privacy">Privacy Policy</a>
-      <a href="#terms">Terms of Service</a>
-      <a href="mailto:support@tradevox.uk">Support</a>
-      <a href="https://github.com/tradevox/tradevox" target="_blank">GitHub</a>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Professional Invoices</h3>
+      <p>Generate branded PDF invoices with your logo, bank details, and QR codes for instant payment. Professional finish, zero effort.</p>
     </div>
-    <p>&copy; 2026 TradeVox. Built for UK Tradespeople.</p>
-    <p style="margin-top: 8px; font-size: 12px;">Version 1.0 | Made with ⚡ for the trades</p>
-  </footer>
+  </div>
 
-  <!-- Accordion Toggle Script -->
-  <script>
-    function toggleAccordion(header) {
-      const accordion = header.parentElement;
-      const allAccordions = document.querySelectorAll('.accordion');
-      
-      // Close all other accordions
-      allAccordions.forEach(acc => {
-        if (acc !== accordion) {
-          acc.classList.remove('active');
-        }
-      });
-      
-      // Toggle current accordion
-      accordion.classList.toggle('active');
-    }
-  </script>
-</body>
-</html>
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-value"><10s</span><span class="stat-label">
